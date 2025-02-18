@@ -34,7 +34,6 @@ header.global-navigation {
   z-index: 10;
   background-color: var(--feds-background-nav);
   box-sizing: content-box;
-  overflow-x: clip;
 }
 
 .feds-topnav-wrapper {
