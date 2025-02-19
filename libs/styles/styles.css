@@ -693,6 +693,7 @@ body {
   word-wrap: break-word;
   -webkit-font-smoothing: antialiased;
   opacity: 1 !important; /* Fix Target hiding */
+  overflow-x: clip; 
 }
 
 header.gnav {
