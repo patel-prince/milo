@@ -75,6 +75,7 @@ header.global-navigation {
 .feds-nav-wrapper--expanded {
   display: flex;
 }
+
 .feds-nav {
   display: flex;
   flex-direction: column;
