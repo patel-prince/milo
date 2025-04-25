@@ -805,15 +805,6 @@ header.new-nav .feds-nav-wrapper {
   visibility: hidden;
 }
 
-header.new-nav .feds-nav-wrapper:not(:has(.feds-dropdown--active)),
-header.new-nav.global-navigation:has(.feds-dropdown--active) {
-  overflow-x: clip;
-}
-
-header.new-nav .feds-nav-wrapper:not(.feds-nav-wrapper--expanded) {
-  position: fixed;
-}
-
 header.new-nav.global-navigation:has(.feds-nav-wrapper--expanded):not(:has(.feds-dropdown--active)) .feds-utilities{
   z-index: 3;
 }
@@ -1406,4 +1397,47 @@ html:has(body.disable-ios-scroll) { /* this class is only added on iOS */
 .disable-ios-scroll.branch-banner-is-active.branch-banner-inline #branch-banner-iframe {
   position: relative;
   display: block;
+}
+
+.global-navigation.new-nav:not(:has(.feds-nav-wrapper--expanded)) {
+  animation: 0.3s removeclip forwards;
+}
+.global-navigation.new-nav:has(.feds-dropdown--active) {
+  animation: 0.3s addclip forwards;
+}
+.feds-nav-wrapper.feds-nav-wrapper--expanded {
+  animation: 0.3s addclip forwards;
+}
+.feds-nav-wrapper.feds-nav-wrapper--expanded:has(.feds-dropdown--active) {
+  animation: 0.3s removeclip forwards;
+}
+header.new-nav .feds-nav-wrapper:not(.feds-nav-wrapper--expanded) {
+  animation: 0s 0.3s addfixed forwards;
+}
+
+@keyframes addfixed {
+  0% {
+    position: ;
+  }
+  100% {
+    position: fixed;
+  }
+}
+
+@keyframes addclip {
+  0% {
+    overflow-x: initial;
+  }
+  100% {
+    overflow-x: clip;
+  }
+}
+
+@keyframes removeclip {
+  0% {
+    overflow-x: clip;
+  }
+  100% {
+    overflow-x: initial;
+  }
 }
