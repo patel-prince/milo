@@ -1244,7 +1244,7 @@ class Gnav {
     `;
 
     // Get all main menu items, but exclude any that are nested inside other features
-    const items = [...this.content.querySelectorAll('h2, p:only-child > strong > a, p:only-child > em > a')]
+    const items = [...this.content.querySelectorAll('h2, p:only-child > strong > a, p:only-child > em > a, p:only-child > a.merch')]
       .filter((item) => CONFIG.features.every((feature) => !item.closest(`.${feature}`)));
 
     // Save number of items to decide whether a hamburger menu is required
@@ -1580,6 +1580,12 @@ class Gnav {
           return removeCustomLink ? '' : addMepHighlightAndTargetId(linkTemplate, item);
         }
         case 'text':
+          console.log('testprince', item);
+          if (item.classList.contains('merch')) {
+            return addMepHighlightAndTargetId(toFragment`<div class="feds-navItem feds-navItem--centered" role="listitem">
+              ${await merch.default(item)}
+            </div>`, item);
+          }
           return addMepHighlightAndTargetId(toFragment`<div class="feds-navItem feds-navItem--centered">
               ${item.textContent}
             </div>`, item);
