@@ -1535,9 +1535,15 @@ class Gnav {
           // Remove its 'em' or 'strong' wrapper
           item.parentElement.replaceWith(item);
 
-          return addMepHighlightAndTargetId(toFragment`<div class="feds-navItem feds-navItem--centered" role="listitem">
+          if (item.classList.contains('merch')) {
+            return addMepHighlightAndTargetId(toFragment`<div class="feds-navItem feds-navItem--centered" role="listitem">
               ${await merch.default(item)}
             </div>`, item);
+          }
+
+          return addMepHighlightAndTargetId(toFragment`<div class="feds-navItem feds-navItem--centered" role="listitem">
+            ${decorateCta({ elem: item, type: itemType, index: index + 1 })}
+          </div>`, item);
         case 'link': {
           let customLinkModifier = '';
           let removeCustomLink = false;
