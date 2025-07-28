@@ -1252,7 +1252,7 @@ class Gnav {
 
     for await (const [index, item] of items.entries()) {
       await yieldToMain();
-      const mainNavItem = this.decorateMainNavItem(item, index);
+      const mainNavItem = await this.decorateMainNavItem(item, index);
       if (mainNavItem) {
         this.elements.mainNav.appendChild(mainNavItem);
       }
@@ -1310,7 +1310,7 @@ class Gnav {
     }
   };
 
-  decorateMainNavItem = (item, index) => {
+  decorateMainNavItem = async (item, index) => {
     performance.mark(`Decorate-MainNav-Item-${index}-Start`);
     const itemType = this.getMainNavItemType(item);
 
@@ -1482,7 +1482,7 @@ class Gnav {
     };
 
     // Decorate item based on its type
-    const returnValue = (() => {
+    const returnValue = await (async () => {
       switch (itemType) {
         case 'syncDropdownTrigger':
         case 'asyncDropdownTrigger': {
@@ -1536,7 +1536,7 @@ class Gnav {
           item.parentElement.replaceWith(item);
 
           return addMepHighlightAndTargetId(toFragment`<div class="feds-navItem feds-navItem--centered" role="listitem">
-              ${decorateCta({ elem: item, type: itemType, index: index + 1 })}
+              ${await merch.default(item)}
             </div>`, item);
         case 'link': {
           let customLinkModifier = '';
@@ -1545,7 +1545,6 @@ class Gnav {
           const customLinksSection = item.closest('.link-group');
           linkElem.className = 'feds-navLink';
           linkElem.setAttribute('daa-ll', getAnalyticsValue(linkElem.textContent, index + 1));
-
           if (customLinksSection) {
             const removeLink = () => {
               const url = new URL(linkElem.href);
