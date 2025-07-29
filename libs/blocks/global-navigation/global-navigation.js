@@ -1580,7 +1580,6 @@ class Gnav {
           return removeCustomLink ? '' : addMepHighlightAndTargetId(linkTemplate, item);
         }
         case 'text':
-          console.log('testprince', item);
           if (item.classList.contains('merch')) {
             return addMepHighlightAndTargetId(toFragment`<div class="feds-navItem feds-navItem--centered" role="listitem">
               ${await merch.default(item)}
