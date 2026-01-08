@@ -178,6 +178,7 @@ const decorateElements = async ({ elem, className = 'feds-navLink', itemIndex = 
       const decoratedLink = decorateCta({ elem: processedLink, type, index: itemIndex.position });
       return decoratedLink;
     }
+    
 
     // Simple links get analytics attributes and appropriate class name
     if (link.classList.contains('merch')) {
